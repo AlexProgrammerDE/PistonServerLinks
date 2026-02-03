@@ -1,0 +1,9 @@
+{
+  "id": "pistonserverlinks",
+  "name": "PistonServerLinks",
+  "version": "${version}",
+  "description": "${description}",
+  "url": "${url}",
+  "authors": ["AlexProgrammerDE"],
+  "main": "net.pistonmaster.pistonserverlinks.velocity.PistonServerLinksVelocity"
+}

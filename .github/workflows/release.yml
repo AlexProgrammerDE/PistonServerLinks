@@ -1,0 +1,173 @@
+name: Publish Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release'
+        required: true
+      after-version:
+        description: 'Snapshot version after release'
+        required: true
+
+jobs:
+  set-release-version:
+    uses: AlexProgrammerDE/PistonServerLinks/.github/workflows/set-version.yml@main
+    with:
+      version: ${{ inputs.version }}
+    secrets: inherit
+
+  build:
+    needs: set-release-version
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v6
+      with:
+        ref: ${{ github.ref }}
+    - name: Validate Gradle wrapper
+      uses: gradle/actions/wrapper-validation@v5
+    - name: Set up JDK 21
+      uses: actions/setup-java@v5
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v5
+    - name: Build with Gradle
+      run: ./gradlew build test --stacktrace --scan
+
+    - name: Build Changelog
+      id: github_release
+      uses: mikepenz/release-changelog-builder-action@v6
+      with:
+        mode: COMMIT
+        toTag: ${{ github.ref }}
+        configurationJson: |
+          {
+            "template": "#{{CHANGELOG}}",
+            "commit_template": "- [`#{{SHORT_MERGE_SHA}}`](https://github.com/AlexProgrammerDE/PistonServerLinks/commit/#{{MERGE_SHA}}) #{{TITLE}}",
+            "categories": [
+              {
+                  "title": "## Features",
+                  "labels": ["feat", "feature"]
+              },
+              {
+                  "title": "## Fixes",
+                  "labels": ["fix", "bug"]
+              },
+              {
+                  "title": "## Performance",
+                  "labels": ["perf"]
+              },
+              {
+                  "title": "## Refactor",
+                  "labels": ["refactor"]
+              },
+              {
+                  "title": "## Documentation",
+                  "labels": ["docs"]
+              },
+              {
+                  "title": "## Build",
+                  "labels": ["build", "chore", "ci"]
+              },
+              {
+                  "title": "## Style",
+                  "labels": ["style"]
+              },
+              {
+                  "title": "## Tests",
+                  "labels": ["test"]
+              },
+              {
+                  "title": "## Other",
+                  "labels": []
+              },
+              {
+                "title": "## Dependencies",
+                "labels": ["dependencies"]
+              }
+            ],
+            "empty_template": "no changes",
+            "label_extractor": [
+              {
+                "pattern": "^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test){1}(\\([\\w\\-\\.]+\\))?(!)?: ([\\w ])+([\\s\\S]*)",
+                "on_property": "title",
+                "target": "$1"
+              }
+            ],
+            "custom_placeholders": [
+              {
+                "name": "SHORT_MERGE_SHA",
+                "source": "MERGE_SHA",
+                "transformer": {
+                  "pattern": "^([0-9a-f]{7})[0-9a-f]*$",
+                  "target": "$1"
+                }
+              }
+            ]
+          }
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - uses: Kir-Antipov/mc-publish@v3.3
+      with:
+        modrinth-id: pistonserverlinks
+        modrinth-featured: true
+        modrinth-unfeature-mode: subset
+        modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+
+        github-tag: ${{ inputs.version }}
+        github-generate-changelog: false
+        github-draft: false
+        github-prerelease: false
+        github-commitish: main
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+
+        files: |
+          build/libs/PistonServerLinks-${{ inputs.version }}.jar
+
+        name: PistonServerLinks ${{ inputs.version }}
+        version: ${{ inputs.version }}
+        version-type: release
+        changelog: ${{ steps.github_release.outputs.changelog }}
+
+        github-changelog: |
+          [![modrinth](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_vector.svg)](https://modrinth.com/plugin/pistonserverlinks/version/${{ inputs.version }})
+
+          ${{ steps.github_release.outputs.changelog }}
+
+        loaders: |
+          folia
+          paper
+          purpur
+          spigot
+          velocity
+        game-versions: |
+          >=1.21
+        game-version-filter: releases
+        java: |
+          21
+
+        retry-attempts: 2
+        retry-delay: 10000
+        fail-mode: fail
+
+    - name: Discord Webhook Action
+      uses: tsickert/discord-webhook@v7.0.0
+      with:
+        webhook-url: ${{ secrets.WEBHOOK_URL }}
+        content: New PistonServerLinks version released!
+        embed-title: PistonServerLinks ${{ inputs.version }}
+        embed-description: PistonServerLinks ${{ inputs.version }} has been released! Changelog and download can be found at https://modrinth.com/plugin/pistonserverlinks/version/${{ inputs.version }}
+        embed-color: 16641028
+
+  set-after-version:
+    needs: build
+    uses: AlexProgrammerDE/PistonServerLinks/.github/workflows/set-version.yml@main
+    with:
+      version: ${{ inputs.after-version }}
+    secrets: inherit

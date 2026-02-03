@@ -1,0 +1,19 @@
+name: PistonServerLinks
+version: ${version}
+main: net.pistonmaster.pistonserverlinks.paper.PistonServerLinksPaper
+description: ${description}
+api-version: "1.21"
+website: ${url}
+authors:
+  - AlexProgrammerDE
+commands:
+  pistonserverlinks:
+    description: PistonServerLinks main command
+    aliases:
+      - psl
+    permission: pistonserverlinks.reload
+    permission-message: You do not have permission to use this command.
+permissions:
+  pistonserverlinks.reload:
+    description: Allows reloading the PistonServerLinks configuration
+    default: op
