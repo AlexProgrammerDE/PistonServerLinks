@@ -10,7 +10,7 @@ dependencies {
 
     compileOnly("org.spigotmc:spigot-api:1.21.4-R0.1-SNAPSHOT")
     compileOnly("me.clip:placeholderapi:2.11.6")
-    compileOnly("io.github.miniplaceholders:miniplaceholders-api:2.2.3")
+    compileOnly("io.github.miniplaceholders:miniplaceholders-api:3.1.0")
 }
 
 tasks.shadowJar {
