@@ -89,7 +89,7 @@ public class LinksManager {
 
     if (proxy.getPluginManager().isLoaded("miniplaceholders")) {
       try {
-        builder.resolver(io.github.miniplaceholders.api.MiniPlaceholders.getGlobalPlaceholders());
+        builder.resolver(io.github.miniplaceholders.api.MiniPlaceholders.globalPlaceholders());
       } catch (Exception ignored) {
         // MiniPlaceholders not available
       }

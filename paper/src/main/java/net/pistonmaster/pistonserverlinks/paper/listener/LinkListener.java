@@ -38,7 +38,7 @@ public class LinkListener implements Listener {
 
         if (type == null) {
           serverLinks.addLink(
-              MiniMessage.miniMessage().deserialize(link.getName(), PlaceholderUtil.tags(player)),
+              MiniMessage.miniMessage().deserialize(link.getName(), player, PlaceholderUtil.tags(player)),
               uri
           );
         } else {

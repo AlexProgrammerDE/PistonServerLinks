@@ -20,9 +20,9 @@ public final class PlaceholderUtil {
     if (Bukkit.getPluginManager().isPluginEnabled("MiniPlaceholders")) {
       try {
         if (player != null) {
-          builder.resolver(io.github.miniplaceholders.api.MiniPlaceholders.getAudienceGlobalPlaceholders(player));
+          builder.resolver(io.github.miniplaceholders.api.MiniPlaceholders.audienceGlobalPlaceholders());
         } else {
-          builder.resolver(io.github.miniplaceholders.api.MiniPlaceholders.getGlobalPlaceholders());
+          builder.resolver(io.github.miniplaceholders.api.MiniPlaceholders.globalPlaceholders());
         }
       } catch (Exception ignored) {
         // MiniPlaceholders not available
