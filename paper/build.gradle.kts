@@ -8,7 +8,7 @@ dependencies {
     implementation("org.bstats:bstats-bukkit:3.1.0")
 
     compileOnly("io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT")
-    compileOnly("me.clip:placeholderapi:2.12.1")
+    compileOnly("me.clip:placeholderapi:2.12.2")
     compileOnly("io.github.miniplaceholders:miniplaceholders-api:3.1.0")
 }
 
