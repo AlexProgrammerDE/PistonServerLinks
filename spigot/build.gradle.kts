@@ -4,7 +4,7 @@ plugins {
 
 dependencies {
     implementation(projects.pistonserverlinksShared)
-    implementation("org.bstats:bstats-bukkit:3.1.0")
+    implementation("org.bstats:bstats-bukkit:3.2.1")
     implementation("net.kyori:adventure-text-minimessage:4.26.1")
     implementation("net.kyori:adventure-text-serializer-legacy:4.26.1")
 
