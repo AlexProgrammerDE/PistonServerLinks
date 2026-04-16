@@ -5,7 +5,7 @@ plugins {
 dependencies {
     implementation(projects.pistonserverlinksShared)
     implementation("org.bstats:bstats-bukkit:3.2.1")
-    implementation("net.kyori:adventure-text-minimessage:4.26.1")
+    implementation("net.kyori:adventure-text-minimessage:5.0.1")
     implementation("net.kyori:adventure-text-serializer-legacy:4.26.1")
 
     compileOnly("org.spigotmc:spigot-api:1.21.4-R0.1-SNAPSHOT")
