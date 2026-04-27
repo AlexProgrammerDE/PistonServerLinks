@@ -8,7 +8,7 @@ dependencies {
     implementation("org.bstats:bstats-velocity:3.2.1")
 
     compileOnly("com.velocitypowered:velocity-api:3.4.0")
-    compileOnly("io.github.miniplaceholders:miniplaceholders-api:3.1.0")
+    compileOnly("io.github.miniplaceholders:miniplaceholders-api:3.2.0")
 }
 
 tasks {
