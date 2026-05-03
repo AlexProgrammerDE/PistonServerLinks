@@ -23,19 +23,19 @@ java {
 dependencies {
   implementation("org.jetbrains:annotations:26.1.0")
 
-  errorprone("com.google.errorprone:error_prone_core:2.48.0")
+  errorprone("com.google.errorprone:error_prone_core:2.49.0")
   spotbugs("com.github.spotbugs:spotbugs:4.9.8")
-  rewrite("org.openrewrite.recipe:rewrite-static-analysis:2.28.0")
-  rewrite("org.openrewrite.recipe:rewrite-migrate-java:3.28.0")
-  rewrite("org.openrewrite.recipe:rewrite-rewrite:0.21.0")
+  rewrite("org.openrewrite.recipe:rewrite-static-analysis:2.34.0")
+  rewrite("org.openrewrite.recipe:rewrite-migrate-java:3.34.0")
+  rewrite("org.openrewrite.recipe:rewrite-rewrite:0.24.2")
 
-  compileOnly("org.projectlombok:lombok:1.18.42")
-  annotationProcessor("org.projectlombok:lombok:1.18.42")
+  compileOnly("org.projectlombok:lombok:1.18.46")
+  annotationProcessor("org.projectlombok:lombok:1.18.46")
 
   testRuntimeOnly("org.junit.platform:junit-platform-launcher")
   testImplementation("org.junit.jupiter:junit-jupiter:6.0.3")
-  testImplementation("org.mockito:mockito-core:5.22.0")
-  testImplementation("org.mockito:mockito-junit-jupiter:5.22.0")
+  testImplementation("org.mockito:mockito-core:5.23.0")
+  testImplementation("org.mockito:mockito-junit-jupiter:5.23.0")
 }
 
 tasks {
