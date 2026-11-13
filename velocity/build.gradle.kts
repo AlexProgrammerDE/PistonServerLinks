@@ -7,7 +7,7 @@ dependencies {
     implementation(projects.pistonserverlinksShared)
     implementation("org.bstats:bstats-velocity:3.2.1")
 
-    compileOnly("com.velocitypowered:velocity-api:4.2.0")
+    compileOnly("com.velocitypowered:velocity-api:3.5.1")
     compileOnly("io.github.miniplaceholders:miniplaceholders-api:3.1.0")
 }
 
