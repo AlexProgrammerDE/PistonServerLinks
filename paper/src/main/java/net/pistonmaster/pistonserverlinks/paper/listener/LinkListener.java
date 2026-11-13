@@ -13,7 +13,7 @@ import org.bukkit.ServerLinks;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerLinksSendEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 
 @SuppressFBWarnings("EI_EXPOSE_REP2")
 public class LinkListener implements Listener {
@@ -24,9 +24,10 @@ public class LinkListener implements Listener {
   }
 
   @EventHandler
-  public void onPlayerLinksSend(PlayerLinksSendEvent event) {
+  public void onPlayerJoin(PlayerJoinEvent event) {
     Player player = event.getPlayer();
-    ServerLinks serverLinks = event.getLinks();
+    // Paper sends its initial links before a Player exists. Apply permission-based links after joining.
+    ServerLinks serverLinks = player.getServer().getServerLinks().copy();
 
     for (Map.Entry<String, LinkEntry> entry : linksManager.getConfig().getPlayerLinks().entrySet()) {
       LinkEntry link = entry.getValue();
@@ -46,5 +47,6 @@ public class LinkListener implements Listener {
         }
       }
     }
+    player.sendLinks(serverLinks);
   }
 }

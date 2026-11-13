@@ -18,7 +18,7 @@ Custom server links plugin for Minecraft 1.21+. Adds configurable links to the m
 
 ## Building
 
-Requires JDK 25 for the Gradle daemon. Gradle selects module compilation toolchains automatically.
+Requires Java 25 or newer for the server and build. Use the latest Java LTS release (currently 25).
 
 ```bash
 git clone https://github.com/AlexProgrammerDE/PistonServerLinks.git
