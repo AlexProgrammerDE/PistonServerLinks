@@ -4,5 +4,5 @@ plugins {
 
 dependencies {
     api("de.exlll:configlib-yaml:4.8.1")
-    api("com.github.spotbugs:spotbugs-annotations:4.10.4")
+    api("com.github.spotbugs:spotbugs-annotations:4.10.5")
 }
