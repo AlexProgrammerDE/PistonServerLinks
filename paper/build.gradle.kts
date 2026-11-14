@@ -10,7 +10,7 @@ dependencies {
     compileOnly("io.papermc.paper:paper-api:26.3.build.249-stable")
     testImplementation("io.papermc.paper:paper-api:26.3.build.249-stable")
     compileOnly("me.clip:placeholderapi:2.12.3")
-    compileOnly("io.github.miniplaceholders:miniplaceholders-api:3.1.0")
+    compileOnly("io.github.miniplaceholders:miniplaceholders-api:3.2.0")
 }
 
 tasks {
