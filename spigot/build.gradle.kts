@@ -5,12 +5,12 @@ plugins {
 dependencies {
     implementation(projects.pistonserverlinksShared)
     implementation("org.bstats:bstats-bukkit:3.2.1")
-    implementation("net.kyori:adventure-text-minimessage:4.26.1")
-    implementation("net.kyori:adventure-text-serializer-legacy:4.26.1")
+    implementation("net.kyori:adventure-text-minimessage:5.2.0")
+    implementation("net.kyori:adventure-text-serializer-legacy:5.2.0")
 
     compileOnly("org.spigotmc:spigot-api:1.21.4-R0.1-SNAPSHOT")
     compileOnly("me.clip:placeholderapi:2.12.3")
-    compileOnly("io.github.miniplaceholders:miniplaceholders-api:3.1.0")
+    compileOnly("io.github.miniplaceholders:miniplaceholders-api:3.2.0")
 }
 
 tasks.shadowJar {
