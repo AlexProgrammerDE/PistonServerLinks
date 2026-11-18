@@ -7,8 +7,8 @@ dependencies {
     implementation(projects.pistonserverlinksShared)
     implementation("org.bstats:bstats-bukkit:3.2.1")
 
-    compileOnly("io.papermc.paper:paper-api:26.3.build.254-stable")
-    testImplementation("io.papermc.paper:paper-api:26.3.build.254-stable")
+    compileOnly("io.papermc.paper:paper-api:26.3.build.255-stable")
+    testImplementation("io.papermc.paper:paper-api:26.3.build.255-stable")
     compileOnly("me.clip:placeholderapi:2.12.3")
     compileOnly("io.github.miniplaceholders:miniplaceholders-api:3.2.0")
 }
